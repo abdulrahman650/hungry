@@ -10,14 +10,17 @@ class CartItem extends StatelessWidget {
     required this.image,
     required this.text,
     required this.desc,
+    required this.isLoading,
     this.onAdd,
     this.onMin,
     this.onRem,
+
     required this.number});
   final String image,text,desc;
   final Function()? onAdd;
   final Function()? onMin;
   final Function()? onRem;
+  final bool isLoading;
   final int number;
 
   @override
@@ -29,13 +32,15 @@ class CartItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(image, width: 100,),
-                CustomText(text: text,weight: FontWeight.bold,) ,
-                CustomText(text: desc),
-              ],
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.network(image, width: 100,),
+                  CustomText(text: text,weight: FontWeight.bold,) ,
+                  CustomText(text: desc),
+                ],
+              ),
             ),
             Column(
               children: [
@@ -75,7 +80,9 @@ class CartItem extends StatelessWidget {
                         color: AppColors.primary,
                         borderRadius: BorderRadius.circular(9)
                     ),
-                    child: Center(child: CustomText(text: "Remove",color: Colors.white,)),
+                    child:
+                    isLoading ? CupertinoActivityIndicator(color: Colors.white,):
+                    Center(child: CustomText(text: "Remove",color: Colors.white,)),
 
                   ),
                 ),                      ],

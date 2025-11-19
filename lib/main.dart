@@ -1,7 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fruits_market_app/splash.dart';
 import 'package:get/get.dart';
+import 'package:hungry_app/splash.dart';
 
 import 'features/auth/views/login_view.dart';
 import 'features/auth/views/signup_view.dart';
@@ -16,6 +18,8 @@ void main()async {
       DeviceOrientation.portraitUp,
     ]
   );
+  PlatformDispatcher.instance.onBeginFrame = null;
+
   runApp(Hungry());
 }
 

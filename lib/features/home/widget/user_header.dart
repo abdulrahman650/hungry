@@ -6,7 +6,8 @@ import 'package:gap/gap.dart';
 import '../../../core/constant/app_colors.dart';
 import '../../../shared/custom_text.dart';
 class  UserHeader extends StatelessWidget {
-  const UserHeader({super.key});
+  const UserHeader({super.key, required this.userName, required this.userImage});
+  final String userName,  userImage;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class  UserHeader extends StatelessWidget {
               height: 35,
             ),
             CustomText(
-              text: "Hello, My Dear",
+              text: "Hello,$userName",
               size: 16,
               weight: FontWeight.w500,
               color: Colors.grey.shade500,
@@ -36,7 +37,7 @@ class  UserHeader extends StatelessWidget {
           width: 60,
           decoration: BoxDecoration(
               image: DecorationImage(
-                image:AssetImage("assets/images/profile2.jpg"),
+                image:NetworkImage(userImage) ?? AssetImage("assets/images/profilemw.jpg"),
                 fit: BoxFit.cover,
               ),
               color: Colors.grey,

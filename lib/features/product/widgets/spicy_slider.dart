@@ -1,43 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
+import 'package:lottie/lottie.dart';
+import 'package:model_viewer_plus/model_viewer_plus.dart';
 import '../../../core/constant/app_colors.dart';
 import '../../../shared/custom_text.dart';
-class SpicySlider extends StatelessWidget {
-  const SpicySlider({super.key, required this.value, required this.onChanged});
 
-final double value;
-final ValueChanged<double> onChanged;
+class SpicySlider extends StatefulWidget {
+  const SpicySlider({super.key, required this.value, required this.onChanged,required  this.img});
+  final double value;
+  final ValueChanged<double> onChanged;
+  final String img;
+
+  @override
+  State<SpicySlider> createState() => _SpicySliderState();
+}
+
+class _SpicySliderState extends State<SpicySlider> {
+
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Image.asset("assets/images/sandwich.png",height: 225,),
-        Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomText(text:"Customize Your Burger\n to Your Tastes.\n Ultimate Experience",),
-            Gap(20),
-            Slider(
-              value: value,
-              onChanged: onChanged,
-              inactiveColor: Colors.grey.shade300,
-              activeColor: AppColors.primary,
+        SizedBox(
+          height: 200,
+          width: double.infinity,
+          child:
+          // Image.asset("assets/images/imageHome1.png"),
+          Image.network(widget.img),
+        ),
+
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal: 40.0),
+          child: SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 3),
+              overlayShape: const RoundSliderOverlayShape(overlayRadius: 10),
+              trackHeight: 3,
+            ),
+
+            child: Slider(
               min: 0,
               max: 1,
+              value: widget.value,
+              onChanged: widget.onChanged,
+              inactiveColor: Colors.grey.shade900.withOpacity(0.2),
+              activeColor: AppColors.primary.withOpacity(0.7),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.max,                      children: [
-              Image.asset("assets/icons/cold.png",height: 12,width: 15,),
-              Gap(105),
-              Image.asset("assets/icons/hot.png",height: 12,width: 15,),
+          ),
+        ),
 
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 53),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText(text: 'Cold 🥶', weight:  FontWeight.bold,size: 12,),
+              Gap(100),
+              CustomText(text: '🌶️ Hot', weight: FontWeight.bold, size: 12,),
             ],
-            ),
+          ),
+        ),
 
-          ],
-        )
-        ,
+
       ],
     );
   }

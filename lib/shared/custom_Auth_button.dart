@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import '../core/constant/app_colors.dart';
 import 'custom_text.dart';
 class CustomAuthButton extends StatelessWidget {
-  const CustomAuthButton({super.key, this.onTap, required this.text, this.color, this.textColor});
+  const CustomAuthButton({super.key, this.onTap, required this.text, this.color, this.textColor, this.width});
 final Function() ? onTap;
 final String text;
 final Color? color;
 final Color? textColor;
+final double? width;
   @override
   Widget build(BuildContext context) {
     return  GestureDetector(
@@ -21,7 +22,7 @@ final Color? textColor;
             color: Colors.white,
           )
         ),
-        width: double.infinity,
+        width: width ?? double.infinity,
         child: Center(
           child: CustomText(text: text,
             weight: FontWeight.w700,

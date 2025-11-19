@@ -51,7 +51,7 @@ void _togelePassword(){
         suffixIcon:
         widget.isPassword ? GestureDetector(
             onTap: _togelePassword,
-            child: Icon(CupertinoIcons.eye,color: Colors.white,)): null,
+            child: Icon(CupertinoIcons.eye,color: Colors.grey.shade400,)): null,
         fillColor: Colors.white,
         filled: true,
 
