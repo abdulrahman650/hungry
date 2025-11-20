@@ -1,6 +1,6 @@
 #  Hungry_app
 
-A new Flutter project.
+# A fast food app where guests can create an account or log in as a guest and enter their data. Later, they can enter their bank card details and edit the information(Api)
 
 ## Getting Started
 
