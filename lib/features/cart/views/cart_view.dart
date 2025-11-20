@@ -26,6 +26,7 @@ class _CartViewState extends State<CartView> {
   late List<int> quantities=[];
   bool isLoading = false;
   bool isLoadingRemove = false;
+  Map<int, bool> itemLoading = {};
   bool isGuest = false;
   UserModel? userModel;
   AuthRepo authRepo = AuthRepo();
@@ -60,21 +61,23 @@ class _CartViewState extends State<CartView> {
   Future<void> removeCartItem(int id)async{
     try{
       setState(() {
-        isLoadingRemove = true;
+        // isLoadingRemove = true;
+        itemLoading[id] = true;
       });
       await cartRepo.removeCartItem(id);
-      getCartData();
+      await getCartData();
       setState(() {
-        isLoadingRemove = false;
+        // isLoadingRemove = false;
+        itemLoading[id] = false;
       });
     }catch(e){
       setState(() {
-        isLoadingRemove = false;
+        // isLoadingRemove = false;
+        itemLoading[id] = false;
       });
      print(e.toString());
     }
   }
-
   @override
   void initState() {
     getCartData();
@@ -95,7 +98,6 @@ class _CartViewState extends State<CartView> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
 
@@ -153,7 +155,8 @@ class _CartViewState extends State<CartView> {
                           ],
                         ),
                         child: CartItem(
-                          isLoading: isLoadingRemove,
+                          // isLoading: isLoadingRemove,
+                          isLoading: itemLoading[item.itemId] ?? false,
                           image: item.image,
                           text: item.name,
                           desc: "Spicy ${item.spicy}",
@@ -205,7 +208,7 @@ class _CartViewState extends State<CartView> {
                   ),
                   child: Column(
                     children: [
-                      Gap(8),
+                      Gap(40),
                       GestureDetector(
                         onTap: () => Navigator.push(
                           context,

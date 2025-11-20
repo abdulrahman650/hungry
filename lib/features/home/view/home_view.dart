@@ -85,7 +85,7 @@ class _HomeViewState extends State<HomeView> {
                       UserHeader(
                         userImage:
                             authRepo.currentUser?.image ??
-                            "https://scontent.fcai21-4.fna.fbcdn.net/v/t39.30808-1/514095766_1975821399826969_8656803689883884495_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=1d2534&_nc_ohc=DqDbDCqQxx4Q7kNvwGFxXVD&_nc_oc=AdkcvKJPFhMX9irGcjmvTtq1fUxyDhKOIGsF1xzF3C70FfZ1X1gwGsRBcRjOD8aro-I&_nc_zt=24&_nc_ht=scontent.fcai21-4.fna&_nc_gid=F4ZIsTQLnkkVlizyFLf0FQ&oh=00_AfikUD45sT8URfJMcqy_iSen1jbn_URJp14otZDXSIk87g&oe=6923DB8F,",
+                            "https://www.instagram.com/p/C9N3T76oTZV/",
                         userName: authRepo.currentUser?.name ?? " My Dear",
                       ),
                       Gap(20),
